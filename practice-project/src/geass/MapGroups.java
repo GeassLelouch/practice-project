@@ -70,8 +70,6 @@ public class MapGroups {
 		//每一列的amt加總
 		List<Integer> sumRowAmtList = new ArrayList<Integer>();
 		
-		titleRow.add("合計");
-		int size = sumRowAmtAllList.size() > 0 ? sumRowAmtAllList.get(0).size() : 0;
 		int sumCount = 0;
 		
 		List<Integer> sumAmtList = new ArrayList<Integer>();
@@ -140,6 +138,10 @@ public class MapGroups {
 			
 			sumRowAmtAllList.add(sumRowAmtList);
 		}
+		
+		titleRow.add("合計");
+		
+		int size = sumRowAmtAllList.size() > 0 ? sumRowAmtAllList.get(0).size() : 0;
 		
 		//將每一列的數字過濾後，弄成一列列的陣列，再計算 每一格的 column 加總 (行加總)
 		//每一格的 column 加總 (行加總)
