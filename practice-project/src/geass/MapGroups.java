@@ -103,7 +103,8 @@ public class MapGroups {
 			}
 		}
 		
-		//讓每一列比對compareMap是否有相對應的地點，沒有的話補 0 填空
+		//讓每一列比對compareMap是否有相對應的地點，沒有的話補 0 填空，最後變成如下
+		//ex: {2016={台中=400, 台北=200, 花蓮=700, 高雄=0}, 2017={台中=0, 台北=400, 花蓮=600, 高雄=300}}
 		for (Integer key : yearList.keySet()) {
 			Map<String, Integer> single = yearList.get(key);
 			
@@ -114,8 +115,9 @@ public class MapGroups {
 			}
 		}
 		
-		//把每一列的資料做僅有數字的群組 
-		//ex: [[200, 300, 400], [400, 500, 600]]
+		//1. sumRowAmtAllList把每一列的資料做僅有數字的群組
+		//2. 進行每一列的輸出撰寫
+		//ex: [[400, 200, 700, 0], [0, 400, 600, 300]]
 		for (Integer key : yearList.keySet()) {
 			
 			sumRowAmtList = new ArrayList<Integer>();
@@ -125,12 +127,16 @@ public class MapGroups {
 			row = new ArrayList<Object>();
 			row.add(key);
 			for (String one : single.keySet()) {
+				//標題輸出
 				if(titleRowCount)titleRow.add(one);
+				//get column value
 				Integer value = single.get(one);
-				sumValue = sumValue + value;
+				//每一列的每一格的資料
 				row.add(value);
-				
+				//每一列的amt加總
 				sumRowAmtList.add(value);
+				//列加總
+				sumValue = sumValue + value;
 			}
 			titleRowCount = false;
 			row.add(sumValue);
